@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: web-player-api
+    runtime: python
+    buildCommand: |
+      pip install djangorestframework pillow django-cors-headers
+      python manage.py migrate
+    startCommand: |
+      python manage.py collectstatic --noinput
+      gunicorn backend.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://user:pass@localhost:5432/db
+      - key: SECRET_KEY
+        generateValue: true
