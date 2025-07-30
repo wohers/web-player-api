@@ -97,7 +97,7 @@ REST_FRAMEWORK = {
 DEBUG = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://wohers.github.io/web-player/",
+    "https://wohers.github.io",
     "http://localhost:5173"
 ]
 
