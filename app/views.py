@@ -29,6 +29,7 @@ def create_user(request):
             }
         }, status=status.HTTP_201_CREATED)
     raise ValidationError(serializer.errors)
+    
 
 
 @api_view(['POST'])
