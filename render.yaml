@@ -6,6 +6,8 @@ services:
       pip install djangorestframework pillow django-cors-headers gunicorn mutagen
       mkdir -p media/tracks media/covers
       python manage.py collectstatic --noinput
+      cp -r media/covers/* media/covers/ || true
+      cp -r media/tracks/* media/tracks/ || true
       python manage.py migrate
     startCommand: |
       python manage.py collectstatic --noinput
