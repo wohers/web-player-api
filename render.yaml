@@ -3,12 +3,11 @@ services:
     name: web-player-api
     runtime: python
     buildCommand: |
-      pip install djangorestframework pillow django-cors-headers gunicorn mutagen
-      mkdir -p media/tracks media/covers
+      pip install djangorestframework pillow django-cors-headers gunicorn mutagen &&
+      mkdir -p media/covers media/tracks &&
+      python manage.py makemigrations &&
+      python manage.py migrate &&
       python manage.py collectstatic --noinput
-      cp -r media/covers/* media/covers/ || true
-      cp -r media/tracks/* media/tracks/ || true
-      python manage.py migrate
     startCommand: |
       python manage.py collectstatic --noinput
       gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT
