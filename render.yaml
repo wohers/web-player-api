@@ -4,6 +4,8 @@ services:
     runtime: python
     buildCommand: |
       pip install djangorestframework pillow django-cors-headers gunicorn mutagen
+      mkdir -p media/tracks media/covers
+      python manage.py collectstatic --noinput
       python manage.py migrate
     startCommand: |
       python manage.py collectstatic --noinput
