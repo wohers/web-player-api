@@ -94,7 +94,6 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'app.exception.my_exception_handler',
 }
 
-DEBUG = False
 
 ALLOWED_HOSTS = [
     'web-player-api.onrender.com',
