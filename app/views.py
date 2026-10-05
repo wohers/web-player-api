@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.authtoken.models import Token
-from .serializers import UserLoginSerializer, UserRegisterSerializer, GetUserSerializer, TrackSerializer,  FavoriteTrackSerializer, SimplifiedFavoriteSerializer
+from .serializers import UserLoginSerializer, UserRegisterSerializer, GetUserSerializer, TrackSerializer,  FavoriteTrackSerializer, SimplifiedFavoriteSerializer, HeroesSerializer
 from rest_framework.exceptions import ValidationError, PermissionDenied, AuthenticationFailed
-from .models import Track, FavoriteTrack, Favorite
+from .models import Track, FavoriteTrack, Favorite, Heroes
 import mutagen
 from django.shortcuts import get_object_or_404
 
@@ -151,3 +151,12 @@ def favorite_action(request, track_id):
     else:
         favorite.tracks.add(track)
         return Response({'status': 'added'}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_heroes(request):
+    heroes = Heroes.objects.all()
+    serializer = HeroesSerializer(heroes, many=True)
+    return Response({
+                'data': serializer.data
+            }, status=status.HTTP_200_OK)

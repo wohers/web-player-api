@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.contrib.auth import get_user_model
 
 class CustomUser(AbstractUser):
     email = models.CharField(unique=True)
@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(unique=False, max_length=100)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'second_name', 'username']
+    REQUIRED_FIELDS = ['first_name', 'second_name']
 
     def __str__(self):
         return self.email
@@ -27,8 +27,6 @@ class Track(models.Model):
         return f"{self.title} - {self.artist}"
 
 
-from django.db import models
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -51,3 +49,13 @@ class FavoriteTrack(models.Model):
         related_name='favorites'
     )
     added_at = models.DateTimeField(auto_now_add=True)
+
+
+class Heroes(models.Model):
+    name = models.CharField(max_length=120)
+    description = models.TextField(max_length=400)
+    photo = models.ImageField(upload_to='heroes_photo/', null=True, blank=True)
+    map = models.ImageField(upload_to='heroes_map/', null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.name}"

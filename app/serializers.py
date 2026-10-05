@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser, Track, FavoriteTrack, Favorite
+from .models import CustomUser, Track, FavoriteTrack, Favorite, Heroes
 from rest_framework.authentication import authenticate
 
 
@@ -72,3 +72,8 @@ class SimplifiedFavoriteSerializer(serializers.ModelSerializer):
             }
             for ft in favorite_tracks
         ]
+
+class HeroesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Heroes
+        fields = ['id', 'name', 'description', 'photo', 'map']
