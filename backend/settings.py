@@ -96,19 +96,19 @@ REST_FRAMEWORK = {
 
 
 ALLOWED_HOSTS = [
-    # 'web-player-api.onrender.com',
-    # 'localhost',
-    # '127.0.0.1',
+    'web-player-api.onrender.com',
+    'localhost',
+    '127.0.0.1',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    # "https://wohers.github.io",
-    # "http://localhost:5173",
-    # "https://web-player-api.onrender.com",
+    "https://wohers.github.io",
+    "http://localhost:5173",
+    "https://web-player-api.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    # "https://web-player-api.onrender.com",
+    "https://web-player-api.onrender.com",
 ]
 
 AUTH_USER_MODEL = 'app.CustomUser'
